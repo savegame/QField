@@ -1,0 +1,56 @@
+[main]
+host = https://www.transifex.com
+
+[qfield-documentation.index]
+file_filter = i18n/<lang>/LC_MESSAGES/index.po
+source_file = i18n/pot/index.pot
+source_lang = en
+type = PO
+
+[qfield-documentation.fieldwork]
+file_filter = i18n/<lang>/LC_MESSAGES/fieldwork.po
+source_file = i18n/pot/fieldwork.pot
+source_lang = en
+type = PO
+
+[qfield-documentation.install]
+file_filter = i18n/<lang>/LC_MESSAGES/install.po
+source_file = i18n/pot/install.pot
+source_lang = en
+type = PO
+
+[qfield-documentation.prepare]
+file_filter = i18n/<lang>/LC_MESSAGES/prepare.po
+source_file = i18n/pot/prepare.pot
+source_lang = en
+type = PO
+
+[qfield-documentation.data-formats]
+file_filter = i18n/<lang>/LC_MESSAGES/data-formats.po
+source_file = i18n/pot/data-formats.pot
+source_lang = en
+type = PO
+
+[qfield-documentation.support]
+file_filter = i18n/<lang>/LC_MESSAGES/support.po
+source_file = i18n/pot/support.pot
+source_lang = en
+type = PO
+
+[qfield-documentation.synchronise]
+file_filter = i18n/<lang>/LC_MESSAGES/synchronise.po
+source_file = i18n/pot/synchronise.pot
+source_lang = en
+type = PO
+
+[qfield-documentation.getting-started]
+file_filter = i18n/<lang>/LC_MESSAGES/getting-started.po
+source_file = i18n/pot/getting-started.pot
+source_lang = en
+type = PO
+
+[qfield-documentation.case-studies]
+file_filter = i18n/<lang>/LC_MESSAGES/case-studies.po
+source_file = i18n/pot/case-studies.pot
+source_lang = en
+type = PO
