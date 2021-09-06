@@ -26,7 +26,7 @@ role="menuselection"} page.
 The display expression is also used to search in layers.
 
 ::: {.container .clearer .text-center}
-![The display expression will be used to represent features with an
+!![The display expression will be used to represent features with an
 identification string throughout
 QField.](../assets/images/define_display_expression.png)
 :::
@@ -50,7 +50,7 @@ role="menuselection"} page and activate the checkboxes to match your
 desired behavior.
 
 ::: {.container .clearer .text-center}
-![Configuration of layers that will not be identifiable, not modifiable
+!![Configuration of layers that will not be identifiable, not modifiable
 and/or not
 searchable.](../assets/images/project_configuration_readonly.png)
 :::
@@ -109,7 +109,7 @@ For more information refer to the relations chapter of the official
 Documentation](https://docs.qgis.org/3.4/en/docs/user_manual/working_with_vector/attribute_table.html#creating-one-or-many-to-many-relations).
 
 ::: {.container .clearer .text-center}
-![](../assets/images/relation_editor_widget_list.png)
+!![](../assets/images/relation_editor_widget_list.png)
 :::
 
 The relation widget shows all the referencing child features in a list.
@@ -142,7 +142,7 @@ The second case is usually used when there are additional relation
 information (e.g. percentage) in the linking table.
 
 ::: {.container .clearer .text-center}
-![](../assets/images/relation_widget_cardinality.png)
+!![](../assets/images/relation_widget_cardinality.png)
 :::
 
 In case of the many-to-one cardinality on many-to-many relations the
@@ -154,7 +154,7 @@ The widget type \"Attachement\" is used to store the path to collected
 photos.
 
 ::: {.container .clearer .text-center}
-![](../assets/images/attachement-setting.png)
+!![](../assets/images/attachement-setting.png)
 :::
 
 The path should be set to relative. Means the pictures are stored then
@@ -165,7 +165,7 @@ In QField the picture is displayed. By clicking the camera symbol the
 camera is started to update the picture with a new photo.
 
 ::: {.container .clearer .text-center}
-![](../assets/images/qfield_picture.png)
+!![](../assets/images/qfield_picture.png)
 :::
 
 On synchronization the sub-directory with the pictures has to be copied
@@ -188,7 +188,7 @@ make a group and configure a visibility expression for a group
 checkbox is checked, the list of diseases will be available to the user.
 
 ::: {.container .clearer .text-center}
-![Configuration of a group box that will only be shown if the checkbox
+!![Configuration of a group box that will only be shown if the checkbox
 \"measures\_taken\" is
 checked.](../assets/images/conditional_visibility_configuration.png)
 :::
@@ -203,7 +203,7 @@ and a description can be added that will be shown to the user if a
 constraint is not satisfied.
 
 ::: {.container .clearer .text-center}
-![Configuration of a constraint within a
+!![Configuration of a constraint within a
 range](../assets/images/constraint_configuration.png)
 :::
 
@@ -231,7 +231,7 @@ to the user and can be modified as long as the field is editable. They
 can be based on the geometry or expression variables.
 
 ::: {.container .clearer .text-center}
-![Configuration of a formatted date as default
+!![Configuration of a formatted date as default
 value](../assets/images/default_value_configuration.png)
 :::
 

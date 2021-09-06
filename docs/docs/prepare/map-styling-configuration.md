@@ -26,7 +26,7 @@ role="menuselection"} page.
 The display expression is also used to search in layers.
 
 ::: {.container .clearer .text-center}
-![The display expression will be used to represent features with an
+!![The display expression will be used to represent features with an
 identification string throughout
 QField.](../assets/images/define_display_expression.png)
 :::
@@ -50,7 +50,7 @@ role="menuselection"} page and activate the checkboxes to match your
 desired behavior.
 
 ::: {.container .clearer .text-center}
-![Configuration of layers that will not be identifiable, not modifiable
+!![Configuration of layers that will not be identifiable, not modifiable
 and/or not
 searchable.](../assets/images/project_configuration_readonly.png)
 :::

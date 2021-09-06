@@ -41,10 +41,10 @@ Workflow
     Engine to produce the LULC map and calculate the map accuracy.
 
 ::: {.container .clearer .text-center}
-![Figure 1: Predefined Ground Truth
+!![Figure 1: Predefined Ground Truth
 Plots](../assets/images/use_study_fiji1.png)
 
-![Figure 2: Capturing land cover
+!![Figure 2: Capturing land cover
 class](../assets/images/use_study_fiji2.png)
 :::
 
@@ -61,7 +61,7 @@ training materials, field and classroom training workshops, and
 collaborative fieldwork.
 
 ::: {.container .clearer .text-center}
-![Figure 3: Preliminary land cover map for the Ba region, Viti Levu,
+!![Figure 3: Preliminary land cover map for the Ba region, Viti Levu,
 Fiji](../assets/images/use_study_fiji3.png)
 :::
 
@@ -74,6 +74,6 @@ by the Australian Centre for International Agricultural Research (ACIAR;
 ASEM/2016/101).
 
 ::: {.container .clearer .text-center}
-![The Fiji Forestry/USP field team is about to collect ground truth data
+!![The Fiji Forestry/USP field team is about to collect ground truth data
 with QField.](../assets/images/use_study_fiji4.jpg)
 :::
