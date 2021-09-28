@@ -31,6 +31,8 @@ Rectangle {
   property FeatureListModelSelection selection
   property MapSettings mapSettings
   property DigitizingToolbar digitizingToolbar
+  property ConfirmationToolbar moveFeaturesToolbar
+
   property color selectionColor
   property alias model: globalFeaturesList.model
   property alias extentController: featureListToolBar.extentController
@@ -42,11 +44,14 @@ Rectangle {
   property bool fullScreenView: qfieldSettings.fullScreenIdentifyView
   property bool isVertical: false
 
+  property bool canvasOperationRequested: digitizingToolbar.geometryRequested ||
+                                          moveFeaturesToolbar.moveFeaturesRequested
+
   signal showMessage(string message)
   signal editGeometry
 
   width: {
-      if ( props.isVisible || digitizingToolbar.geometryRequested )
+      if ( props.isVisible || featureForm.canvasOperationRequested )
       {
           if (qfieldSettings.fullScreenIdentifyView || parent.width < parent.height || parent.width < 300)
           {
@@ -65,7 +70,7 @@ Rectangle {
       }
   }
   height: {
-     if ( props.isVisible || digitizingToolbar.geometryRequested )
+     if ( props.isVisible || featureForm.canvasOperationRequested )
      {
          if (fullScreenView || parent.width > parent.height)
          {
@@ -83,11 +88,11 @@ Rectangle {
      }
   }
 
-  anchors.bottomMargin: digitizingToolbar.geometryRequested ? featureForm.height : 0
-  anchors.rightMargin: digitizingToolbar.geometryRequested ? -featureForm.width : 0
-  opacity: digitizingToolbar.geometryRequested ? 0.5 : 1
+  anchors.bottomMargin: featureForm.canvasOperationRequested ? featureForm.height : 0
+  anchors.rightMargin: featureForm.canvasOperationRequested ? -featureForm.width : 0
+  opacity: featureForm.canvasOperationRequested ? 0.5 : 1
 
-  enabled: !digitizingToolbar.geometryRequested
+  enabled: !featureForm.canvasOperationRequested
   visible: props.isVisible
 
   states: [
@@ -475,6 +480,30 @@ Rectangle {
         }
     }
 
+    onMultiMoveClicked: {
+        moveFeaturesToolbar.initializeMoveFeatures()
+    }
+
+    CoordinateTransformer {
+        id: moveFeaturesTransformer
+        sourceCrs: mapCanvas.mapSettings.destinationCrs
+        destinationCrs: featureForm.selection.model.selectedLayer.crs
+    }
+
+    Connections {
+        target: moveFeaturesToolbar
+
+        function onMoveConfirmed() {
+            moveFeaturesTransformer.sourcePosition = moveFeaturesToolbar.endPoint
+            var translateX = moveFeaturesTransformer.projectedPosition.x
+            var translateY = moveFeaturesTransformer.projectedPosition.y
+            moveFeaturesTransformer.sourcePosition = moveFeaturesToolbar.startPoint
+            translateX -= moveFeaturesTransformer.projectedPosition.x
+            translateY -= moveFeaturesTransformer.projectedPosition.y
+            featureForm.model.moveSelection(translateX, translateY)
+        }
+    }
+
     onMultiDuplicateClicked: {
         if  (featureForm.multiSelection) {
           if (featureForm.model.duplicateSelection()) {
@@ -619,7 +648,7 @@ Rectangle {
 
     fullScreenView = qfieldSettings.fullScreenIdentifyView;
 
-    if ( !digitizingToolbar.geometryRequested )
+    if ( !featureForm.canvasOperationRequested )
     {
       featureForm.multiSelection = false;
       featureFormList.model.featureModel.modelMode = FeatureModel.SingleFeatureModel;

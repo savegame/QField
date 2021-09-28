@@ -46,6 +46,7 @@ Rectangle {
   signal toggleMultiSelection
   signal multiEditClicked
   signal multiMergeClicked
+  signal multiMoveClicked
   signal multiDuplicateClicked
   signal multiDeleteClicked
 
@@ -496,6 +497,18 @@ Rectangle {
       leftPadding: 10
 
       onTriggered: multiMergeClicked();
+    }
+
+    MenuItem {
+      text: qsTr( 'Move Selected Feature(s)' )
+      enabled: toolBar.model && toolBar.model.canMoveSelection && projectInfo.editRights
+      visible: projectInfo.editRights
+
+      font: Theme.defaultFont
+      height: visible ? 48 : 0
+      leftPadding: 50
+
+      onTriggered: multiMoveClicked();
     }
 
     MenuItem {

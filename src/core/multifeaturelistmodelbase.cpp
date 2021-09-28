@@ -328,6 +328,15 @@ bool MultiFeatureListModelBase::canDuplicateSelection()
   return !vlayer->readOnly() && ( vlayer->dataProvider()->capabilities() & QgsVectorDataProvider::AddFeatures );
 }
 
+bool MultiFeatureListModelBase::canMoveSelection()
+{
+  if ( mSelectedFeatures.isEmpty() )
+    return false;
+
+  QgsVectorLayer *vlayer = mSelectedFeatures[0].first;
+  return !vlayer->readOnly() && ( vlayer->dataProvider()->capabilities() & QgsVectorDataProvider::ChangeGeometries );
+}
+
 bool MultiFeatureListModelBase::mergeSelection()
 {
   if ( !canMergeSelection() )
@@ -500,6 +509,59 @@ bool MultiFeatureListModelBase::duplicateSelection()
     beginResetModel();
     mFeatures = duplicatedFeatures;
     mSelectedFeatures = duplicatedFeatures;
+    endResetModel();
+    emit selectedCountChanged();
+  }
+
+  return isSuccess;
+}
+
+bool MultiFeatureListModelBase::moveSelection( const double x, const double y )
+{
+  if ( !canDuplicateSelection() )
+    return false;
+
+
+  QgsVectorLayer *vlayer = mSelectedFeatures[0].first;
+  if ( !vlayer->startEditing() )
+  {
+    QgsMessageLog::logMessage( tr( "Cannot start editing" ), "QField", Qgis::Warning );
+    return false;
+  }
+
+  qDebug() << x;
+  qDebug() << y;
+  //QList<QPair<QgsVectorLayer *, QgsFeature>> movedFeatures;
+  bool isSuccess = false;
+  for ( auto &pair : mSelectedFeatures )
+  {
+    QgsGeometry geom = pair.second.geometry();
+    qDebug() << geom.asWkt();
+    geom.translate( x, y );
+    qDebug() << geom.asWkt();
+    pair.second.setGeometry( geom );
+    isSuccess = vlayer->changeGeometry( pair.second.id(), geom );
+    qDebug() << ( isSuccess ? "TRUE" : "FALSE" );
+    if ( !isSuccess )
+      break;
+  }
+
+  if ( isSuccess )
+  {
+    // commit changes
+    isSuccess = vlayer->commitChanges();
+  }
+
+  if ( !isSuccess )
+  {
+    if ( !vlayer->rollBack() )
+      QgsMessageLog::logMessage( tr( "Cannot rollback layer changes in layer %1" ).arg( vlayer->name() ), "QField", Qgis::Critical );
+  }
+  else
+  {
+    beginResetModel();
+    mFeatures = mSelectedFeatures;
+    //mSelectedFeatures = duplicatedFeatures;
     endResetModel();
     emit selectedCountChanged();
   }
