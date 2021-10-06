@@ -170,7 +170,8 @@ set(QFIELD_CORE_HDRS
     trackingmodel.h
     valuemapmodel.h
     vertexmodel.h
-    viewstatus.h)
+    viewstatus.h
+    ${CMAKE_CURRENT_BINARY_DIR}/qfield.h)
 
 if(ANDROID)
   set(QFIELD_CORE_HDRS
@@ -200,12 +201,14 @@ add_library(qfield_core STATIC ${QFIELD_CORE_SRCS} ${QFIELD_CORE_HDRS})
 include(GenerateExportHeader)
 generate_export_header(qfield_core)
 
-target_include_directories(
-  qfield_core SYSTEM PUBLIC ${QGIS_INCLUDE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+configure_file(qfield.h.in ${CMAKE_CURRENT_BINARY_DIR}/qfield.h @ONLY)
+
+target_include_directories(qfield_core SYSTEM
+                           PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
 
 target_include_directories(
   qfield_core SYSTEM
-  PRIVATE ${PROJ_INCLUDE_DIR} ${GDAL_INCLUDE_DIR} ${QCA_INCLUDE_DIR}
+  PRIVATE ${PROJ_INCLUDE_DIR} ${GDAL_INCLUDE_DIR} ${Qca_INCLUDE_DIR}
           ${QTKEYCHAIN_INCLUDE_DIR} ${SQLITE3_INCLUDE_DIR})
 if(IOS)
   # to include <qpa/qplatformnativeinterface.h>
@@ -255,8 +258,8 @@ target_link_libraries(
          Qt5::Concurrent
          Qt5::WebView
          Qt5::Bluetooth
-         ${QGIS_CORE_LIBRARY}
-         ${QGIS_ANALYSIS_LIBRARY}
+         QGIS::Core
+         QGIS::Analysis
          ${PROJ_LIBRARY}
          ${GDAL_LIBRARIES})
 
