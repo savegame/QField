@@ -214,6 +214,7 @@ jobs:
           KEYPASS: ${{ secrets.KEYPASS }}
           STOREPASS: ${{ secrets.STOREPASS }}
         run: |
+          cat ${{ env.CMAKE_BUILD_DIR }}/android_deployment_settings.json
           cmake --build  "${{ env.CMAKE_BUILD_DIR }}" --target bundle --config Release
 
       - name: 📦 Upload apk
