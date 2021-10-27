@@ -270,7 +270,7 @@ IF(${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
 
 
   function(qgis_core_link_library LIBRARY FORCE_SDK)
-    find_and_link_library(QGIS::Core ${LIBRARY} ${FORCE_SDK})
+    find_and_link_library(qgis_core ${LIBRARY} ${FORCE_SDK})
   endfunction()
 
   # qgis_core is built using bz2, xml2 from sysroot
@@ -307,8 +307,8 @@ IF(${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
           qgis/plugins
       )
       if(QGIS_${PLUGIN}_PLUGIN_LIBRARY)
-        message(STATUS "Link ${QGIS_${PLUGIN}_PLUGIN_LIBRARY} interface to QGIS::Core")
-        target_link_libraries(QGIS::Core INTERFACE ${QGIS_${PLUGIN}_PLUGIN_LIBRARY})
+        message(STATUS "Link ${QGIS_${PLUGIN}_PLUGIN_LIBRARY} interface to qgis_core")
+        target_link_libraries(qgis_core INTERFACE ${QGIS_${PLUGIN}_PLUGIN_LIBRARY})
       else()
         message(FATAL_ERROR "Fail to find library ${PLUGIN}. Make sure it is present in CMAKE_PREFIX_PATH/QGIS.app/Contents/PlugIns/qgis/")
       endif()
@@ -326,14 +326,14 @@ IF(${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
 
   # Versionless tagging of Qt, only supported from Qt5.15
   if(NOT TARGET Qt::PrintSupport)
-    target_compile_definitions(QGIS::Core INTERFACE "-DQT_NO_PRINTER")
+    target_compile_definitions(qgis_core INTERFACE "-DQT_NO_PRINTER")
   endif()
 
   function(qgis_analysis_link_library LIBRARY FORCE_SDK)
     find_and_link_library(qgis_analysis ${LIBRARY} ${FORCE_SDK})
   endfunction()
 
-  target_link_libraries(qgis_analysis INTERFACE ${QGIS_ANALYSIS_LIBRARY} QGIS::Core)
+  target_link_libraries(qgis_analysis INTERFACE ${QGIS_ANALYSIS_LIBRARY} qgis_core)
 
   qgis_analysis_link_library(exiv2 TRUE)
   qgis_analysis_link_library(exiv2-xmp TRUE)
