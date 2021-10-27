@@ -213,45 +213,6 @@ jobs:
           path: |
             ${{ env.CMAKE_BUILD_DIR }}/android-build/build/outputs/apk/debug/android-build-debug.apk
 
-      - name: 📦 Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: sdk-${{ matrix.triplet }}
-          path: |
-            ${{ env.CMAKE_BUILD_DIR }}/android-build
-            ${{ env.CMAKE_BUILD_DIR }}/android_deployment_settings.json
-
-  package:
-    needs: build
-    runs-on: ubuntu-20.04
-
-    steps:
-      - name: 🐣 Checkout
-        uses: actions/checkout@v2
-        with:
-          submodules: recursive
-
-      - name: 📦 Download artifact
-        uses: actions/download-artifact@v2
-
-      - name: Display structure of downloaded files
-        run: ls -R
-
-      - name: Setup tmate session
-        if: always()
-        uses: mxschmitt/action-tmate@v3
-        with:
-          limit-access-to-actor: true
-
-      # delete-artifact
-      - uses: geekyeggo/delete-artifact@v1
-        with:
-          name: |
-            sdk-arm64-android
-            sdk-arm-android
-            sdk-x64-android
-            sdk-x86-android
-
 #      - name: 🍺 Deploy
 #        run: |
 #          sudo apt install -y s3cmd
