@@ -18,7 +18,6 @@
 #ifndef QFIELD_H
 #define QFIELD_H
 
-#define APP_PACKAGE_NAME "@APP_PACKAGE_NAME@"
 
 /**
  * Contains "polyfills" for backporting c++ features from standards > c++17 and Qt global methods

@@ -23,7 +23,7 @@
 #include "appinterface.h"
 #include "feedback.h"
 #include "fileutils.h"
-#include "qfield.h"
+#include "qfield_android.h"
 
 #include <QAndroidJniEnvironment>
 #include <QApplication>

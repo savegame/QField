@@ -170,8 +170,7 @@ set(QFIELD_CORE_HDRS
     trackingmodel.h
     valuemapmodel.h
     vertexmodel.h
-    viewstatus.h
-    ${CMAKE_CURRENT_BINARY_DIR}/qfield.h)
+    viewstatus.h)
 
 if(ANDROID)
   set(QFIELD_CORE_HDRS
@@ -179,7 +178,8 @@ if(ANDROID)
       platforms/android/androidplatformutilities.h
       platforms/android/androidpicturesource.h
       platforms/android/androidviewstatus.h
-      platforms/android/androidprojectsource.h)
+      platforms/android/androidprojectsource.h
+      ${CMAKE_CURRENT_BINARY_DIR}/qfield_android.h)
   set(QFIELD_CORE_SRCS
       ${QFIELD_CORE_SRCS}
       platforms/android/androidplatformutilities.cpp
@@ -201,7 +201,8 @@ add_library(qfield_core STATIC ${QFIELD_CORE_SRCS} ${QFIELD_CORE_HDRS})
 include(GenerateExportHeader)
 generate_export_header(qfield_core)
 
-configure_file(qfield.h.in ${CMAKE_CURRENT_BINARY_DIR}/qfield.h @ONLY)
+configure_file(platforms/android/qfield_android.h.in
+               ${CMAKE_CURRENT_BINARY_DIR}/qfield_android.h @ONLY)
 
 target_include_directories(qfield_core SYSTEM
                            PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
