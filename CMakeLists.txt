@@ -35,6 +35,7 @@ add_definitions(-DAPP_NAME="${APP_NAME}")
 add_definitions(-DAPP_VERSION="${APP_VERSION}")
 add_definitions(-DAPP_VERSION_STR="${APP_VERSION_STR}")
 add_definitions(-DGIT_REV="${GIT_REV}")
+message(STATUS "Building for git rev ${GIT_REV}")
 
 set(DEFAULT_BIN_SUBDIR     bin)
 set(DEFAULT_CGIBIN_SUBDIR  bin)
