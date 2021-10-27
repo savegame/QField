@@ -12,6 +12,9 @@ foreach(JAVA_FILE ${JAVA_FILES})
   file(WRITE ${JAVA_FILE} "${CONTENT}")
 endforeach()
 
+file(READ @CMAKE_BINARY_DIR@/android_deployment_settings.json DS)
+string(REGEX REPLACE "\n}" "\"sdkBuildToolsRevision\" : \"29.0.2\" \n}")
+file(WRITE @CMAKE_BINARY_DIR@/android_deployment_settings.json "${DS}")
 if(DEFINED ENV{KEYNAME}
    AND DEFINED ENV{KEYPASS}
    AND DEFINED ENV{STOREPASS})
