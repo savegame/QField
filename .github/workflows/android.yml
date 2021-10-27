@@ -202,7 +202,17 @@ jobs:
         run: |
           cmake --build "${{ env.CMAKE_BUILD_DIR }}" --config ${{ steps.vars.outputs.BUILD_TYPE }} # --target qfield
 
+      - name: Setup signing key
+        env:
+          SIGNINGKEY: ${{ secrets.PLAYSTORE_SIGNINGKEY }}
+        run: |
+          echo "$SIGNINGKEY" | base64 --decode > ./keystore.p12
+
       - name: Package
+        env:
+          KEYNAME: qfield
+          KEYPASS: ${{ secrets.KEYPASS }}
+          STOREPASS: ${{ secrets.STOREPASS }}
         run: |
           cmake --build  "${{ env.CMAKE_BUILD_DIR }}" --target bundle --config Release
 
