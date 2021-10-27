@@ -82,7 +82,8 @@ void AndroidPlatformUtilities::initSystem()
   gitRevFile.open( QIODevice::ReadOnly );
   QByteArray appGitRev = getIntentExtra( "GIT_REV" ).toLocal8Bit();
   QByteArray localGitRev = gitRevFile.readAll();
-  if ( localGitRev != appGitRev )
+  // TODO this is a temporary hack for test reasons only. Uncomment following line again
+  // if ( localGitRev != appGitRev )
   {
     int argc = 0;
     QApplication app( argc, nullptr );
