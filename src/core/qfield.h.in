@@ -18,6 +18,7 @@
 #ifndef QFIELD_H
 #define QFIELD_H
 
+#include <QString>
 
 /**
  * Contains "polyfills" for backporting c++ features from standards > c++17 and Qt global methods
@@ -50,6 +51,11 @@ namespace qfield
     private:
       T &mData;
   };
+
+  static inline const QString gitRev{ QStringLiteral( "@GIT_REV@" ) };
+  static inline const QString appVersion{ QStringLiteral( "@APP_VERSION@" ) };
+  static inline const QString appVersionStr{ QStringLiteral( "@APP_VERSION_STR@" ) };
+  static inline const QString appName{ QStringLiteral( "@APP_NAME@" ) };
 }; // namespace qfield
 
 #endif // QFIELD_H
