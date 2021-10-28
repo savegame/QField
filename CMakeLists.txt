@@ -91,10 +91,7 @@ if (ANDROID)
   set(ANDROID_PLATFORM 21 CACHE INT "Minimum Android platform SDK version")
   set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_BINARY_DIR}/android-template)
 
-  # Extra libraries to be copied after building
-  #  list(APPEND ANDROID_EXTRA_LIBS
-  #    ${VCPKG_BASE_DIR}/lib/libssl_1_1.so
-  #    ${VCPKG_BASE_DIR}/lib/libcrypto_1_1.so)
+  include(platform/android/openssl/CMakeLists.txt)
 
   find_package(Qt5 COMPONENTS AndroidExtras REQUIRED)
 
