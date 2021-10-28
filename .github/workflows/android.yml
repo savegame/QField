@@ -27,7 +27,7 @@ jobs:
             android-abi: 'x86'
 
     env:
-      ANDROID_PLATFORM: 26
+      ANDROID_PLATFORM: 21
       ANDROID_TARGET_PLATFORM: 29
 
     steps:
