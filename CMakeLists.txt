@@ -93,8 +93,8 @@ if (ANDROID)
 
   # Extra libraries to be copied after building
   list(APPEND ANDROID_EXTRA_LIBS
-    ${VCPKG_BASE_DIR}/lib/libssl.so
-    ${VCPKG_BASE_DIR}/lib/libcrypto.so)
+    ${VCPKG_BASE_DIR}/lib/libssl_1_1.so
+    ${VCPKG_BASE_DIR}/lib/libcrypto_1_1.so)
 
   find_package(Qt5 COMPONENTS AndroidExtras REQUIRED)
 

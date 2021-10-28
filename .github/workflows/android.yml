@@ -170,7 +170,7 @@ jobs:
           source ./scripts/version_number.sh
           source ./scripts/ci/generate-version-details.sh
 
-          overlay_ports=(${WORKSPACE}/${{ steps.vars.outputs.OVERLAY }} ${WORKSPACE}/vcpkg/overlay)
+          overlay_ports=(${WORKSPACE}/vcpkg/overlay_android ${WORKSPACE}/vcpkg/overlay_system_qt ${WORKSPACE}/vcpkg/overlay)
           echo "Building with $(IFS=\; ; echo "${overlay_ports[*]}")"
           cmake -S "${SOURCE_DIR}" \
                 -B "${CMAKE_BUILD_DIR}" \
