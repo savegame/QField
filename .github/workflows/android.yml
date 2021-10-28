@@ -170,7 +170,7 @@ jobs:
           source ./scripts/version_number.sh
           source ./scripts/ci/generate-version-details.sh
 
-          overlay_ports=(${WORKSPACE}/vcpkg/overlay_android ${WORKSPACE}/vcpkg/overlay_system_qt ${WORKSPACE}/vcpkg/overlay)
+          overlay_ports=(${WORKSPACE}/vcpkg/overlay_system_qt ${WORKSPACE}/vcpkg/overlay)
           echo "Building with $(IFS=\; ; echo "${overlay_ports[*]}")"
           cmake -S "${SOURCE_DIR}" \
                 -B "${CMAKE_BUILD_DIR}" \
@@ -178,7 +178,6 @@ jobs:
                 -DCMAKE_BUILD_TYPE=${{ steps.vars.outputs.BUILD_TYPE }} \
                 -DCMAKE_TOOLCHAIN_FILE="${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" \
                 -DVCPKG_OVERLAY_PORTS=$(IFS=\; ; echo "${overlay_ports[*]}") \
-                -DVCPKG_OVERLAY_TRIPLETS=${SOURCE_DIR}/vcpkg/triplets \
                 -DVCPKG_TARGET_TRIPLET="${{ matrix.triplet }}" \
                 -DWITH_VCPKG=ON \
                 -DWITH_SPIX=ON \
