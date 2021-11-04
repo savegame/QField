@@ -5,109 +5,92 @@
     "homepage": "https://qgis.org",
     "description": "QGIS is a free, open source, cross platform (lin/win/mac) geographical information system (GIS)",
     "dependencies": [
-      "expat",
-      "libxml2",
-      "libzip",
-      "zlib",
-      "libspatialindex",
-      "libspatialite",
-      {
-        "name": "gdal",
-        "features":
-        [
-          "libspatialite"
-        ]
-      },
-      {
-        "name": "exiv2",
-        "features":
-        [
-          "xmp"
-        ]
-      },
-      "gsl",
-      "libpq",
-      "protobuf",
-      "proj4",
-      "geos",
-      {
-        "name": "libtasn1",
-        "platform": "ios"
-      },
-      "qt5-base",
-      "qt5-svg",
-      "qt5-location",
-      "qt5-tools",
-      {
-        "name": "qt5-macextras",
-        "platform": "osx"
-      },
-      {
-        "name": "qt5-winextras",
-        "platform": "windows"
-      },
-      "qca",
-      "qtkeychain"
+        "expat",
+        "libxml2",
+        "libzip",
+        "zlib",
+        "libspatialindex",
+        "libspatialite",
+        {
+            "name": "gdal",
+            "features": [
+                "libspatialite"
+            ]
+        },
+        {
+            "name": "exiv2",
+            "features": [
+                "xmp"
+            ]
+        },
+        "gsl",
+        "libpq",
+        "protobuf",
+        "proj4",
+        "geos",
+        {
+            "name": "libtasn1",
+            "platform": "ios"
+        },
+        "qt5-base",
+        "qt5-svg",
+        "qt5-location",
+        "qt5-tools",
+        {
+            "name": "qt5-macextras",
+            "platform": "osx"
+        },
+        {
+            "name": "qt5-winextras",
+            "platform": "windows"
+        },
+        "qca",
+        "qtkeychain"
     ],
-    "features":
-    [
-	{
-            "name": "opencl",
+    "features": {
+        "opencl": {
             "description": "Should OpenCL support be added",
-            "dependencies":
-            [
+            "dependencies": [
                 "opencl"
             ]
-	},
-        {
-            "name": "server",
+        },
+        "server": {
             "description": "Determines whether QGIS server should be built",
-            "dependencies":
-            [
+            "dependencies": [
                 "fastcgi"
             ]
         },
-        {
-            "name": "process",
+        "process": {
             "description": "Determines whether the command line QGIS process tool should be built"
         },
-        {
-            "name": "3d",
+        "3d": {
             "description": "Determines whether QGIS 3D library should be built",
-            "dependencies":
-            [
+            "dependencies": [
                 "qt5-3d"
             ]
         },
-        {
-            "name": "bindings",
+        "bindings": {
             "description": "Determines whether Python bindings should be built"
         },
-        {
-            "name": "gui",
+        "gui": {
             "description": "Determines whether the QGIS gui should be built",
-            "dependencies":
-            [
+            "dependencies": [
                 "qwt",
                 "qscintilla"
             ]
         },
-        {
-            "name": "desktop",
+        "desktop": {
             "description": "Determines whether the QGIS desktop (main app) should be built"
         },
-        {
-            "name": "customwidgets",
+        "customwidgets": {
             "description": "Determines whether the QGIS custom widgets for QtCreator should be built"
         },
-        {
-            "name": "quick",
+        "quick": {
             "description": "Build the QGIS quick components for mobile interfaces",
-            "dependencies":
-            [
+            "dependencies": [
                 "qt5-quickcontrols2",
                 "qt5-declarative"
             ]
         }
-    ]
-  }
+    }
+}
