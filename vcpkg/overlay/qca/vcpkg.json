@@ -9,5 +9,11 @@
       "name": "qt5-base",
       "default-features": false
     }
+  ],
+  "features": [
+	  {
+      "name": "gnupg",
+      "description": "Build with gnupg plugin"
+	  }
   ]
 }

@@ -67,6 +67,12 @@ vcpkg_execute_required_process(
 )
 message(STATUS "Importing certstore done")
 
+if("gnupg" IN_LIST FEATURES)
+    list(APPEND QCA_OPTIONS -DWITH_gnupg_PLUGIN=ON)
+else()
+    list(APPEND QCA_OPTIONS -DWITH_gnupg_PLUGIN=OFF)
+endif()
+
 # Configure and build
 vcpkg_configure_cmake(
     SOURCE_PATH ${SOURCE_PATH}
@@ -80,6 +86,7 @@ vcpkg_configure_cmake(
         -DQCA_FEATURE_INSTALL_DIR=${CURRENT_PACKAGES_DIR}/share/qca/mkspecs/features
         -DOSX_FRAMEWORK=OFF
         -DCMAKE_FIND_ROOT_PATH=$ENV{Qt5_DIR}
+        ${QCA_OPTIONS}
     OPTIONS_DEBUG
         -DQCA_PLUGINS_INSTALL_DIR=${QCA_FEATURE_INSTALL_DIR_DEBUG}
     OPTIONS_RELEASE
