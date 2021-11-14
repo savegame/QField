@@ -180,15 +180,6 @@ jobs:
                 -DAPP_PACKAGE_NAME="${APP_PACKAGE_NAME}" \
                 -DAPP_ICON="${APP_ICON}" \
                 -DAPP_NAME="${APP_NAME}" \
-                -DDEPLOYMENT_TARGET=12.0 \
-                -DFORCE_STATIC_LIBS=TRUE \
-                -DPLATFORM=OS64 \
-                -DENABLE_VISIBILITY=FALSE \
-                -DENABLE_BITCODE=FALSE \
-                -DENABLE_ARC=TRUE \
-                -DQT_IOS_TEAM_ID=${{ secrets.IOS_TEAM_ID }} \
-                -DQT_IOS_CODE_SIGN_IDENTITY=${{ secrets.IOS_CODE_SIGN_IDENTITY }} \
-                -DQT_IOS_PROVISIONING_PROFILE_SPECIFIER=${{ secrets.IOS_PROVISIONING_PROFILE_SPECIFIER }} \
                 ${EXTRA_CMAKE_ARGS}
 
       - name: 📑 Upload Dep Build Logs
