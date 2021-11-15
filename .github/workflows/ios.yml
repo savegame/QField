@@ -102,6 +102,7 @@ jobs:
           brew install automake bison flex autoconf libtool
           echo $(brew --prefix bison)/bin >> $GITHUB_PATH
           echo $(brew --prefix flex)/bin >> $GITHUB_PATH
+          echo $(brew --prefix automake)/bin >> $GITHUB_PATH
           echo "EXTRA_CMAKE_ARGS=-GXcode -DUSE_MAC_BUNDLING=OFF" >> $GITHUB_ENV
           sudo xcode-select -s /Applications/Xcode_12.app/Contents/Developer
 
