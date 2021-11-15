@@ -249,6 +249,12 @@ jobs:
           name: build-logs-${{ matrix.triplet }}
           path: ${{ steps.vars.outputs.VCPKG_ROOT }}/buildtrees/**/*.log
 
+      - name: 📑 List libs
+        if: failure()
+        run: |
+          CMAKE_BUILD_DIR=$( ${{ steps.vars.outputs.PATHCONVERT }} "${CMAKE_BUILD_DIR}" )
+          ls -al ${CMAKE_BUILD_DIR}/vcpkg_installed/${{ matrix.triplet }}/lib
+
       - name: 🌋 Build
         run: |
           cmake --build "${{ env.CMAKE_BUILD_DIR }}" --config ${{ steps.vars.outputs.BUILD_TYPE }} # --target qfield
