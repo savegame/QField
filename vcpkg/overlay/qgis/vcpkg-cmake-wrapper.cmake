@@ -40,16 +40,6 @@ set(FindQGIS_SKIP_QGIS_CONFIG TRUE)
 
 _find_package(${ARGS})
 
-function(find_and_link_library TARGET LIBRARY)
-  find_library(${LIBRARY}-LIBRARY ${LIBRARY} ${ADDITIONAL_ARGS})
-  if(${LIBRARY}-LIBRARY)
-    message(STATUS " -- Link ${${LIBRARY}-LIBRARY} interface to ${TARGET}")
-    target_link_libraries(${TARGET} INTERFACE ${${LIBRARY}-LIBRARY})
-  else()
-    message(FATAL_ERROR "Fail to find library ${LIBRARY}. Make sure it is present in CMAKE_PREFIX_PATH")
-  endif()
-endfunction()
-
 set(_qgis_dep_find_args "")
 if(";${ARGS};" MATCHES ";REQUIRED;")
   list(APPEND _qgis_dep_find_args "REQUIRED")
@@ -88,7 +78,8 @@ function(_qgis_core_add_dependency target package)
 endfunction()
 
 function(_find_and_link_library library target)
-  find_library(${library}-LIBRARY NAMES ${library} ${ADDITIONAL_ARGS})
+  # Windows builds some libs with, some without "lib" prefix
+  find_library(${library}-LIBRARY NAMES ${library} lib${library} ${ADDITIONAL_ARGS})
   if(${library}-LIBRARY)
     message(STATUS "  Link ${target} interface to ${${library}-LIBRARY}")
     target_link_libraries(${target} INTERFACE ${${library}-LIBRARY})
