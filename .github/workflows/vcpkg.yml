@@ -250,6 +250,7 @@ jobs:
           path: ${{ steps.vars.outputs.VCPKG_ROOT }}/buildtrees/**/*.log
 
       - name: 📑 List libs
+        shell: bash
         if: failure()
         run: |
           CMAKE_BUILD_DIR=$( ${{ steps.vars.outputs.PATHCONVERT }} "${CMAKE_BUILD_DIR}" )
