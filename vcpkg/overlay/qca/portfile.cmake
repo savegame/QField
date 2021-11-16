@@ -21,6 +21,7 @@ vcpkg_from_github(
         0001-fix-path-for-vcpkg.patch
         0002-fix-build-error.patch
         0003-ios.patch
+        0004-Use-generate_export_headers-to-fix-static-windows-bu.patch
 )
 
 # Remove these files on the cmake next update

@@ -1,0 +1,57 @@
+From 1493897393d7eaea62f4a3494a6faaa52e66df2b Mon Sep 17 00:00:00 2001
+From: Matthias Kuhn <matthias@opengis.ch>
+Date: Tue, 16 Nov 2021 12:53:09 +0100
+Subject: [PATCH] Use generate_export_headers to fix static windows build
+
+---
+ CMakeLists.txt     | 3 ++-
+ src/CMakeLists.txt | 6 ++++++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bb11898e..1b385b9f 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -337,7 +337,6 @@ set( public_HEADERS
+   ${qca_INCLUDEDIR}/QtCrypto/qca.h
+   ${qca_INCLUDEDIR}/QtCrypto/qcaprovider.h
+   ${qca_INCLUDEDIR}/QtCrypto/QtCrypto
+-  ${qca_INCLUDEDIR}/QtCrypto/qca_export.h
+   ${qca_INCLUDEDIR}/QtCrypto/qca_support.h
+   ${qca_INCLUDEDIR}/QtCrypto/qca_tools.h
+   ${qca_INCLUDEDIR}/QtCrypto/qca_core.h
+@@ -373,6 +372,8 @@ set(QCA_CRYPTO_INSTALL_DIR "${QCA_PLUGINS_INSTALL_DIR}/crypto")
+ add_subdirectory(src)
+ add_subdirectory(plugins)
+ 
++
++
+ if(STATIC_PLUGINS)
+   # Generate header with static plugins list
+   file(WRITE "${CMAKE_BINARY_DIR}/import_plugins.h" "#include <QtPlugin>\n")
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 93c6967d..3a93498a 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -124,6 +124,9 @@ ENDIF(WIN32)
+ SET( SOURCES ${SOURCES} ${botan_SOURCES})
+ 
+ add_library(${QCA_LIB_NAME} ${SOURCES}  ${public_HEADERS})
++include(GenerateExportHeader)
++generate_export_header(${QCA_LIB_NAME})
++
+ if(QT6)
+   target_link_libraries(${QCA_LIB_NAME} Qt6::Core Qt6::Core5Compat)
+ else()
+@@ -173,5 +176,8 @@ if(NOT DEVELOPER_MODE)
+           PUBLIC_HEADER DESTINATION "${QCA_FULL_INCLUDE_INSTALL_DIR}" INCLUDES DESTINATION "${QCA_FULL_INCLUDE_INSTALL_DIR}"
+   )
+   install_pdb(${QCA_LIB_NAME} ${QCA_BINARY_INSTALL_DIR})
++  install(FILES
++    ${PROJECT_BINARY_DIR}/${QCA_LIB_NAME}_export.h DESTINATION ${QCA_FULL_INCLUDE_INSTALL_DIR}
++  )
+ endif()
+ 
+-- 
+2.31.1
+
