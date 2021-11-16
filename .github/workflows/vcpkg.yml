@@ -258,7 +258,6 @@ jobs:
 
       - name: 📑 List libs
         shell: bash
-        if: failure()
         run: |
           CMAKE_BUILD_DIR=$( ${{ steps.vars.outputs.PATHCONVERT }} "${CMAKE_BUILD_DIR}" )
           ls -al ${CMAKE_BUILD_DIR}/vcpkg_installed/${{ matrix.triplet }}/lib
