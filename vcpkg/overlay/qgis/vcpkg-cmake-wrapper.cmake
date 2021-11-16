@@ -114,7 +114,7 @@ if(QGIS_FOUND AND "@VCPKG_LIBRARY_LINKAGE@" STREQUAL "static")
   #  _find_and_link_library(qgis_core z) # transient dependency for spatialite ... disabled because of windows ... required or conditional?
   _qgis_core_add_dependency(qca Qca CONFIG)
   _qgis_core_add_dependency(Protobuf Protobuf)
-  _qgis_core_add_dependency(GDAL::GDAL GDAL CONFIG)
+  _qgis_core_add_dependency(GDAL GDAL)
   _qgis_core_add_dependency(exiv2lib exiv2)
   _qgis_core_add_dependency(exiv2-xmp exiv2)
   _qgis_core_add_dependency(libzip::zip libzip)
