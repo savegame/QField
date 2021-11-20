@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - release-**
+      - holmes
   pull_request:
   release:
     types: ['published', 'released']
