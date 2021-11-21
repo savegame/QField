@@ -184,6 +184,7 @@ jobs:
           source ./scripts/ci/generate-version-details.sh
 
           overlay_ports=(${WORKSPACE}/vcpkg/overlay_system_qt ${WORKSPACE}/vcpkg/overlay)
+          export ANDROID_API_VERSION=21
           echo "Building with $(IFS=\; ; echo "${overlay_ports[*]}")"
           cmake -S "${SOURCE_DIR}" \
                 -B "${CMAKE_BUILD_DIR}" \
