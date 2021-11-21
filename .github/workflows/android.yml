@@ -184,7 +184,7 @@ jobs:
           source ./scripts/ci/generate-version-details.sh
 
           overlay_ports=(${WORKSPACE}/vcpkg/overlay_system_qt ${WORKSPACE}/vcpkg/overlay)
-          export ANDROID_API_VERSION=21
+          export ANDROID_API_VERSION=${ANDROID_PLATFORM}
           echo "Building with $(IFS=\; ; echo "${overlay_ports[*]}")"
           cmake -S "${SOURCE_DIR}" \
                 -B "${CMAKE_BUILD_DIR}" \
@@ -213,6 +213,12 @@ jobs:
         with:
           name: build-logs-${{ matrix.triplet }}
           path: ${{ steps.vars.outputs.VCPKG_ROOT }}/buildtrees/**/*.log
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: always()
+        with:
+          limit-access-to-actor: true
 
       - name: 🌋 Build
         run: |
