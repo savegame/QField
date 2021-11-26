@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - release-**
+      - qfpy
   pull_request:
   release:
     types: ['published', 'released']
