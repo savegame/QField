@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - release-**
+      - mqtt
   pull_request:
   release:
     types: ['published', 'released']
