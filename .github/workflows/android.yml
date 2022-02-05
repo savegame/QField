@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - release-**
+      - qt-fun
   pull_request:
   release:
     types: ['published', 'released']
