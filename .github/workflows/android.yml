@@ -59,10 +59,7 @@ jobs:
 
 
           BUILD_ROOT="/home/runner"
-          echo "::set-output name=SYSTEM_QT::ON"
           echo "::set-output name=PATHCONVERT::echo"
-          echo "::set-output name=INSTALL_QT::true"
-          echo "::set-output name=QT_TARGET::android"
           echo "::set-output name=BUILD_TYPE::Release"
           echo "::set-output name=BUILD_ROOT::${BUILD_ROOT}"
 
@@ -93,14 +90,6 @@ jobs:
           df -h
           sudo apt clean
           df -h
-
-      - name: 💐 Install Qt
-        if: ${{ steps.vars.outputs.INSTALL_QT }}
-        uses: jurplel/install-qt-action@v2
-        with:
-          version: 5.14.2
-          modules: 'qtcharts'
-          target: ${{ steps.vars.outputs.QT_TARGET }}
 
       # transifex-client is not compatible with py >= 3.10
       # temporary band aid
@@ -149,7 +138,6 @@ jobs:
                 -B "${CMAKE_BUILD_DIR}" \
                 -G Ninja \
                 -DCMAKE_BUILD_TYPE=${{ steps.vars.outputs.BUILD_TYPE }} \
-                -DSYSTEM_QT=ON \
                 -DVCPKG_TARGET_TRIPLET="${{ matrix.triplet }}" \
                 -DWITH_SPIX=OFF \
                 -DAPP_VERSION="${APP_VERSION}" \

@@ -57,17 +57,11 @@ jobs:
             x64-linux)
               BUILD_ROOT="/home/runner"
               echo "::set-output name=PATHCONVERT::echo"
-              echo "::set-output name=INSTALL_QT::true"
-              echo "::set-output name=QT_TARGET::desktop"
-              echo "::set-output name=QT_ARCH::"
               ;;
 
             x64-osx)
               BUILD_ROOT="/Users/runner"
               echo "::set-output name=PATHCONVERT::echo"
-              echo "::set-output name=INSTALL_QT::true"
-              echo "::set-output name=QT_TARGET::desktop"
-              echo "::set-output name=QT_ARCH::"
               ;;
           esac
 
@@ -120,15 +114,6 @@ jobs:
           df -h
           sudo apt clean
           df -h
-
-      - name: 💐 Install Qt
-        if: ${{ steps.vars.outputs.INSTALL_QT }}
-        uses: jurplel/install-qt-action@v2
-        with:
-          version: 5.14.2
-          modules: 'qtcharts'
-          target: ${{ steps.vars.outputs.QT_TARGET }}
-          arch: ${{ steps.vars.outputs.QT_ARCH }}
 
       - name: 🐧 Prepare linux build env
         if: ${{ matrix.triplet == 'x64-linux' }}
@@ -215,7 +200,6 @@ jobs:
           cmake -S "${SOURCE_DIR}" \
                 -B "${CMAKE_BUILD_DIR}" \
                 -DCMAKE_BUILD_TYPE=${{ steps.vars.outputs.BUILD_TYPE }} \
-                -DSYSTEM_QT=${{ steps.vars.outputs.INSTALL_QT }} \
                 -DVCPKG_TARGET_TRIPLET="${{ matrix.triplet }}" \
                 -DWITH_VCPKG=ON \
                 -DWITH_SPIX=ON \
