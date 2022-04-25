@@ -8,7 +8,7 @@
     "qgis",
     "qt-sensors",
     "qt-webview",
-    "qt-connectivity",
+
     "qt-quickcontrols2",
     "qt-declarative",
     "qt-location",
