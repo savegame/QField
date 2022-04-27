@@ -3,7 +3,7 @@ name: 🎁 Desktop
 on:
   push:
     branches:
-      - master
+      - qt6a
       - release-**
   pull_request:
   release:
@@ -57,17 +57,11 @@ jobs:
             x64-linux)
               BUILD_ROOT="/home/runner"
               echo "::set-output name=PATHCONVERT::echo"
-              echo "::set-output name=INSTALL_QT::true"
-              echo "::set-output name=QT_TARGET::desktop"
-              echo "::set-output name=QT_ARCH::"
               ;;
 
             x64-osx)
               BUILD_ROOT="/Users/runner"
               echo "::set-output name=PATHCONVERT::echo"
-              echo "::set-output name=INSTALL_QT::true"
-              echo "::set-output name=QT_TARGET::desktop"
-              echo "::set-output name=QT_ARCH::"
               ;;
           esac
 
