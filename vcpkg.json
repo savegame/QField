@@ -8,11 +8,7 @@
     "qgis",
     "qt-sensors",
     "qt-webview",
-
     "qt-quickcontrols2",
-
-    "qt-location",
-
     "qt-multimedia",
     "spix",
     {
