@@ -9,7 +9,7 @@
     "qt-sensors",
     "qt-webview",
     "qt-quickcontrols2",
-    "qt-multimedia",
+
     "spix",
     {
       "name": "sentry-native",
