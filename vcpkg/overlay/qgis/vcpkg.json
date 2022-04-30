@@ -39,8 +39,7 @@
       "qtlocation",
       "qttools",
 	  "qca",
-	"qtkeychain",
-      "zstd"
+	"qtkeychain"
 	
     ],
     "features":
