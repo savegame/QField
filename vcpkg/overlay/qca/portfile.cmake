@@ -60,7 +60,7 @@ vcpkg_cmake_configure(
         -DQCA_SUFFIX=OFF
         -DQCA_FEATURE_INSTALL_DIR=share/qca/mkspecs/features
         -DOSX_FRAMEWORK=OFF
-        -BUILD_WITH_QT6=ON
+        -DBUILD_WITH_QT6=ON
         ${QCA_OPTIONS}
     OPTIONS_DEBUG
         -DQCA_PLUGINS_INSTALL_DIR=${QCA_FEATURE_INSTALL_DIR_DEBUG}
