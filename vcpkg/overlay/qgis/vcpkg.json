@@ -34,8 +34,8 @@
         "name": "libtasn1",
         "platform": "ios"
       },
-      "qt-base",
-      "qt-svg"
+      "qtbase",
+      "qtsvg"
 
 
 
