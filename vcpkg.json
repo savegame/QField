@@ -6,10 +6,13 @@
   "description": "A simplified and touch optimized frontend for QGIS.",
   "dependencies": [
     "qgis",
-    "qt-sensors",
-    "qt-webview",
-
-
+    "qtsensors",
+    "qtwebview",
+    "qtconnectivity",
+    "qtdeclarative",
+    "qtlocation",
+    "qtcharts",
+    "qtmultimedia",
     "spix",
     {
       "name": "sentry-native",
