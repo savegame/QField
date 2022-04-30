@@ -37,7 +37,10 @@
       "qtbase",
       "qtsvg",
       "qtlocation",
-      "qttools"
+      "qttools",
+	  "qca",
+	"qtkeychain"
+	
     ],
     "features":
 	{
