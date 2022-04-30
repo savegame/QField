@@ -221,7 +221,7 @@ jobs:
           name: build-logs-${{ matrix.triplet }}
           path: |
  
-            ${{ steps.vars.outputs.VCPKG_ROOT }}/src/buildtrees/**/*.log
+            ${{ steps.vars.outputs.VCPKG_ROOT }}/buildtrees/**/*.log
 
 
 
